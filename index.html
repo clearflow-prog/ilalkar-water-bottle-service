@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title>CLEAR FLOW — ILALKAR WATER BOTTLE SERVICE </title> -->
+  <title>CLEAR FLOW — Pure Hydration. Pure Confidence.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ---- Page-specific: Hero ---- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-media video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%) scale(1.02);
+      filter: saturate(1.08) brightness(0.92);
+      animation: slowZoom 16s var(--ease) infinite alternate;
+    }
+
+    @keyframes slowZoom {
+      0% {
+        transform: translate(-50%, -50%) scale(1.0);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+    }
+
+    .hero-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(120% 90% at 50% 100%, rgba(3, 27, 52, .95) 0%, rgba(3, 27, 52, .35) 45%, rgba(5, 8, 22, .55) 100%),
+        linear-gradient(180deg, rgba(5, 8, 22, .88) 0%, rgba(5, 8, 22, .05) 32%, rgba(5, 8, 22, .1) 60%, rgba(5, 8, 22, .92) 100%);
+      z-index: 2;
+    }
+
+    .hero-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(60% 50% at 50% 38%, rgba(0, 212, 255, .10), transparent 70%);
+      z-index: 2;
+      mix-blend-mode: screen;
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 56px;
+    }
+
+    .hero .eyebrow {
+      opacity: 0;
+      animation: fadeUp .9s var(--ease) .35s forwards;
+      color: var(--secondary);
+    }
+
+    h1.headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(48px, 8.6vw, 124px);
+      line-height: 0.98;
+      letter-spacing: -.5px;
+      max-width: 1100px;
+      color: var(--light);
+    }
+
+    h1.headline .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    h1.headline .line span {
+      display: block;
+      transform: translateY(110%);
+      opacity: 0;
+      animation: revealLine 1.1s var(--ease) forwards;
+    }
+
+    h1.headline .line:nth-child(1) span {
+      animation-delay: .5s;
+    }
+
+    h1.headline .line:nth-child(2) span {
+      animation-delay: .66s;
+    }
+
+    h1.headline em {
+      font-style: italic;
+      color: var(--secondary);
+      background: linear-gradient(95deg, var(--secondary), var(--accent) 60%, var(--light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero .sub {
+      margin-top: 28px;
+      max-width: 460px;
+      font-size: 16.5px;
+      line-height: 1.65;
+      color: var(--neutral);
+      opacity: 0;
+      font-weight: 400;
+      animation: fadeUp .9s var(--ease) 1.05s forwards;
+    }
+
+    .hero .cta-row {
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeUp .9s var(--ease) 1.2s forwards;
+    }
+
+    .spec-plate {
+      position: absolute;
+      z-index: 5;
+      right: 56px;
+      bottom: 104px;
+      width: 300px;
+      padding: 18px 22px;
+      border-radius: 16px;
+      background: rgba(248, 251, 255, .06);
+      border: 1px solid rgba(248, 251, 255, .14);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) 1.4s forwards;
+    }
+
+    .spec-plate .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: .6px;
+      color: var(--neutral);
+      padding: 6px 0;
+    }
+
+    .spec-plate .row:not(:last-child) {
+      border-bottom: 1px solid rgba(248, 251, 255, .08);
+    }
+
+    .spec-plate .row b {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .spec-plate .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin-right: 8px;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      z-index: 5;
+      left: 56px;
+      bottom: 46px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease) 1.5s forwards;
+    }
+
+    .scroll-cue .track {
+      width: 1px;
+      height: 48px;
+      background: rgba(248, 251, 255, .2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-cue .track::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 16px;
+      background: var(--accent);
+      animation: travel 2.4s ease-in-out infinite;
+    }
+
+    .scroll-cue span {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      color: var(--neutral);
+      opacity: .65;
+      writing-mode: vertical-rl;
+    }
+
+    .droplets {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .droplet {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .95), rgba(0, 212, 255, .25) 70%, transparent 100%);
+      opacity: 0;
+      animation: drift linear infinite;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: .85;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes revealLine {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .3;
+      }
+    }
+
+    @keyframes travel {
+      0% {
+        transform: translateY(-16px);
+      }
+
+      100% {
+        transform: translateY(48px);
+      }
+    }
+
+    @keyframes drift {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(.6);
+      }
+
+      10% {
+        opacity: .7;
+      }
+
+      90% {
+        opacity: .4;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.1);
+      }
+    }
+
+
+
+    @media (max-width: 860px) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 110px;
+        padding-bottom: 40px;
+      }
+
+      .hero-body {
+        flex: 0 0 auto;
+        padding: 0 22px;
+        justify-content: flex-start;
+        margin-bottom: 32px;
+      }
+
+      .spec-plate {
+        position: relative;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        width: calc(100% - 44px);
+        margin: 0 22px;
+      }
+
+      .scroll-cue {
+        display: none;
+      }
+
+      h1.headline {
+        font-size: clamp(40px, 13vw, 72px);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .hero .cta-row .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="site-nav on-dark">
+    <a href="index.html" class="wordmark">CLEAR<span> FLOW</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="is-active">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Become Distributor <svg xmlns="http://www.w3.org/2000/svg" width="14"
+          height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" class="arrow">
+          <path d="M7 7h10v10" />
+          <path d="M7 17 17 7" />
+        </svg></a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html" class="is-active">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="mobile-cta">Become Distributor</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-media">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="assets/hero-video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="droplets" id="droplets"></div>
+
+    <div class="hero-body">
+      <div class="eyebrow">Natural Mineral Water · Crafted for Everyday Excellence</div>
+      <h1 class="headline">
+        <span class="line"><span>ILALKAR WATER </span></span>
+        <span class="line"><span>BOTTLE <em>SERVICE.</em></span></span>
+      </h1>
+      <p class="sub">Premium mineral water, drawn and balanced for clarity in every drop — crafted for the standards of
+        modern living.</p>
+      <div class="cta-row">
+        <a href="contact.html" class="btn btn-light">Explore Products
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+        <a href="contact.html" class="btn btn-ghost-dark">Become a Distributor</a>
+      </div>
+    </div>
+
+    <div class="spec-plate">
+      <div class="row"><span><span class="dot"></span>Source</span><b>Natural Mineral</b></div>
+      <div class="row"><span><span class="dot"></span>Balance</span><b>pH 7.2 — 7.8</b></div>
+      <div class="row"><span><span class="dot"></span>Standard</span><b>BIS Certified</b></div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="track"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ===== Why Clear Flow — dark icon-card grid ===== -->
+  <section class="section section-dark">
+    <div class="eyebrow">Why Clear Flow</div>
+    <h2 class="section-title">The details others skip<br>are where we <em>begin</em>.</h2>
+    <p class="section-sub">Premium water isn't just about what's inside the bottle — it's about every decision that got
+      it there. These are the standards we refuse to compromise on.</p>
+
+    <div class="icon-grid">
+      <div class="icon-card reveal">
+        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C12 2 5 10.5 5 15a7 7 0 0014 0c0-4.5-7-13-7-13z" stroke="currentColor" stroke-width="1.6" />
+          </svg></div>
+        <h3>Natural Taste</h3>
+        <p>A clean, crisp profile with no aftertaste. Just water, the way nature intended it to taste when every
+          impurity has been respectfully removed.</p>
+      </div>
+      <div class="icon-card reveal">
+        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v18M5 7l-3 6a4 4 0 008 0l-3-6h-2zM19 7l-3 6a4 4 0 008 0l-3-6h-2zM5 7h14" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <h3>Balanced Minerals</h3>
+        <p>Calcium, magnesium, and potassium in proportions your body recognizes. Hydration that supports performance
+          without overwhelming the palate.</p>
+      </div>
+      <div class="icon-card reveal">
+        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="1.6" />
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+        <h3>Leak-Proof Packaging</h3>
+        <p>Precision-moulded caps and stress-tested PET. Toss it in a bag, ship it across the country — the seal holds
+          and the bottle stays pristine.</p>
+      </div>
+      <div class="icon-card reveal">
+        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M17 8C8 10 5 17 5 21M17 8c2-5-1-7-5-7-3 0-5 2-5 5 0 5 5 6 5 6" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <h3>Eco Friendly</h3>
+        <p>100% recyclable bottles, optimized material usage, and a closed-loop manufacturing initiative that keeps
+          post-consumer PET in circulation.</p>
+      </div>
+      <div class="icon-card reveal">
+        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M7 10h10v8a2 2 0 01-2 2H9a2 2 0 01-2-2v-8zM9 10V7a3 3 0 016 0v3" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <h3>Safe Drinking Water</h3>
+        <p>BIS-certified, lab-verified, and processed in a sterile environment. The confidence you feel when you twist
+          the cap is built into every bottle.</p>
+      </div>
+      <div class="icon-card reveal">
+        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 6 6 1-4.5 4.4L17.5 20 12 17l-5.5 3 1-6.6L3 9l6-1 3-6z" stroke="currentColor"
+              stroke-width="1.5" stroke-linejoin="round" />
+          </svg></div>
+        <h3>Premium Quality Control</h3>
+        <p>Every batch is sampled against a 22-point checklist before it ships. Quality is not a department here — it is
+          the entire operation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="section section-dark" style="padding-top:40px;">
+    <div class="eyebrow" style="justify-content:center; margin:0 auto 20px;">Voices of Trust</div>
+    <h2 class="section-title" style="margin:0 auto; text-align:center; max-width:800px;">Trusted by
+      hospitality,<br><em>corporate</em>, and retail.</h2>
+    <p class="section-sub" style="margin:22px auto 0; text-align:center;">Real partners. Real outcomes. Here is what
+      they tell us when we ask what made them stay.</p>
+
+    <div class="testimonials">
+      <div class="testi-track">
+        <div class="testi-slide is-active">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I've handled four water brands in 15 years. CLEAR FLOW is the first where the cap
+            doesn't leak, the label doesn't peel, and the reorder rate from retailers speaks for itself."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">KM</div>
+            <div>
+              <h5>Karan Malhotra</h5><span>Owner, Malhotra Wholesale</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Our banquet team switched to Clear Flow for every event this year. Guests actually
+            comment on the taste — that's never happened with a water brand before."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">RS</div>
+            <div>
+              <h5>Riya Sehgal</h5><span>F&B Manager, Orchid Grand Hotels</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"What sold us as a corporate supplier wasn't the price — it was consistency. Every
+            carton, every batch, the same quality. That's rare in this category."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">AV</div>
+            <div>
+              <h5>Aniket Verma</h5><span>Procurement Head, Vertex Corp</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-slide">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"We stock six water brands. Clear Flow has the lowest return rate on damaged bottles by
+            far — the packaging genuinely holds up in transit."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">PJ</div>
+            <div>
+              <h5>Priya Joshi</h5><span>Retail Buyer, Nagpur Mart Chain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-controls">
+        <div class="testi-arrow prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+        <div class="testi-dots"></div>
+        <div class="testi-arrow next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA band ===== -->
+  <section class="cta-band">
+    <div class="eyebrow" style="justify-content:center; color:var(--accent);">Distributor Program</div>
+    <h2>Bring Clear Flow to your market.</h2>
+    <p>Strong demand, reliable supply chain, and full marketing support for partners across India.</p>
+    <div class="cta-row">
+      <a href="contact.html" class="btn btn-light">Become a Distributor</a>
+      <a href="about.html" class="btn btn-ghost-dark">Learn About Us</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="wordmark" style="color:var(--light);">CLEAR<span> FLOW</span></div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/__clearflow?igsh=d3o0MnM3eGFxOTFl" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+          </svg></a>
+        <a href="https://www.facebook.com/share/1CAj2UCEYk/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M14 9h3V6h-3a4 4 0 00-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 011-1z" stroke="currentColor"
+              stroke-width="1.4" stroke-linejoin="round" />
+          </svg></a>
+        <a href="https://wa.me/+919112304256" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="17"
+            height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M17.6 6.32A8 8 0 004.7 16.6L4 20l3.5-.9a8 8 0 0010.1-12.78z" stroke="currentColor"
+              stroke-width="1.5" />
+          </svg></a>
+        <a href="mailto:ilalkarwaterbottleservice@gmail.com" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24"
+            fill="none">
+            <path d="M21 5H3v14h18V5z" stroke="currentColor" stroke-width="1.5" />
+            <path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.5" />
+          </svg></a>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <p style="max-width:260px;">Premium natural mineral water, crafted for purity, trust, and everyday excellence.
+        </p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <a href="contact.html">Become a Distributor</a>
+        <a href="contact.html">Bulk Orders</a>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <a href="tel:+919112304256">+91 91123 04256</a><br>
+        <a href="tel:+917219486603">+91 72194 86603</a><br>
+        <a href="mailto:ilalkarwaterbottleservice@gmail.com">ilalkarwaterbottleservice@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CLEAR FLOW. All rights reserved.</span>
+      <span>Kamal Chowk Nagpur, Maharashtra 440017</span>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — CLEAR FLOW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .contact-hero{
+    padding:200px 56px 120px;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(8,247,254,.15), transparent 60%),
+      linear-gradient(180deg, var(--dark) 0%, var(--primary) 100%);
+    color:var(--light);
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background: 
+      linear-gradient(180deg, transparent, rgba(5,8,22,0.8) 95%),
+      radial-gradient(60% 60% at 80% 20%, rgba(0,212,255,.12), transparent 70%);
+    pointer-events:none;
+    z-index:2;
+  }
+  .contact-hero::before{
+    content:'';
+    position:absolute;
+    bottom:-160px; left:-10%;
+    width:120%; height:320px;
+    border-radius:50%;
+    border-top:1px solid rgba(8,247,254,.45);
+    background:transparent;
+    box-shadow:0 -30px 90px -15px rgba(0,212,255,.35);
+    filter:blur(8px);
+    z-index:2;
+    pointer-events:none;
+  }
+  .contact-hero-bg{
+    position:absolute;
+    inset:0;
+    background:url('https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    opacity:0.18;
+    mix-blend-mode:luminosity;
+    pointer-events:none;
+    z-index:1;
+  }
+  .contact-hero h1{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(40px, 6.4vw, 76px);
+    max-width:700px;
+    line-height:1.05;
+    position:relative; z-index:3;
+  }
+  .contact-hero h1 em{color:var(--secondary);}
+  .contact-hero p{
+    margin-top:22px;
+    max-width:480px;
+    font-size:16px;
+    line-height:1.7;
+    opacity:.7;
+    position:relative; z-index:3;
+  }
+ 
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    padding:0 56px 140px;
+    align-items:start;
+    background: var(--dark);
+  }
+ 
+  /* Info column */
+  .info-list{display:flex; flex-direction:column; gap:18px;}
+  .info-card{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding:24px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.06);
+    transition:all .35s var(--ease);
+  }
+  .info-card:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,0.04);
+    border-color:rgba(0,212,255,0.25);
+    box-shadow:0 12px 32px -12px rgba(0,0,0,0.35);
+  }
+  .info-card .icon{
+    flex-shrink:0;
+    width:42px; height:42px;
+    border-radius:11px;
+    background:rgba(255,255,255,0.05);
+    color:var(--light);
+    border:1px solid rgba(255,255,255,0.1);
+    display:flex; align-items:center; justify-content:center;
+    transition:all .3s var(--ease);
+  }
+  .info-card:hover .icon{
+    background:var(--accent);
+    color:var(--dark);
+    transform:scale(1.05);
+  }
+  .info-card h4{
+    font-family:'Space Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+    opacity:.55;
+    margin-bottom:6px;
+  }
+  .info-card p, .info-card a{
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    color:var(--light);
+    text-decoration:none;
+    line-height:1.5;
+  }
+ 
+  .map-frame{
+    margin-top:18px;
+    border-radius:16px;
+    overflow:hidden;
+    height:220px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:all .35s var(--ease);
+  }
+  .map-frame:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 32px -12px rgba(0,0,0,0.4);
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:grayscale(1) contrast(1.1) opacity(0.85);}
+ 
+  /* Form column */
+  .contact-form-card{
+    background:var(--dark);
+    color:var(--light);
+    border-radius:24px;
+    padding:48px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .contact-form-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(70% 60% at 90% 0%, rgba(0,212,255,.16), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-form-card h3{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:28px;
+    position:relative; z-index:2;
+  }
+  .contact-form-card > p{
+    margin-top:10px;
+    opacity:.65;
+    font-size:14.5px;
+    max-width:380px;
+    position:relative; z-index:2;
+  }
+  form{
+    position:relative; z-index:2;
+    margin-top:32px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{
+    font-family:'Space Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    opacity:.55;
+  }
+  .field input, .field select, .field textarea{
+    background:rgba(248,251,255,.06);
+    border:1px solid rgba(248,251,255,.16);
+    border-radius:10px;
+    padding:13px 14px;
+    color:var(--light);
+    font-family:'Manrope',sans-serif;
+    font-size:14.5px;
+    outline:none;
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(248,251,255,.35);}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-color:var(--accent);
+    background:rgba(248,251,255,.09);
+  }
+  .field textarea{resize:vertical; min-height:96px;}
+  .field select{
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23EAF4FF' stroke-width='2' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+  }
+  .field select option{color:#031B34;}
+
+  form button[type="submit"]{
+    grid-column:1 / -1;
+    margin-top:6px;
+    background:var(--accent);
+    color:var(--dark);
+    font-weight:700;
+  }
+  form button[type="submit"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 34px -10px rgba(8,247,254,.5);
+  }
+  form button[type="submit"]:disabled{opacity:.7; cursor:default; transform:none;}
+
+  @media (max-width: 900px){
+    .contact-wrap{grid-template-columns:1fr; gap:40px; padding:0 22px 96px;}
+    form{grid-template-columns:1fr;}
+    .contact-hero{padding:140px 22px 40px;}
+    .contact-form-card{padding:32px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav on-dark">
+  <a href="index.html" class="wordmark">CLEAR<span> FLOW</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html" class="is-active">Contact</a>
+    <a href="contact.html" class="nav-cta">Become Distributor <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a>
+  </div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="contact.html" class="is-active">Contact</a>
+  <a href="contact.html" class="mobile-cta">Become Distributor</a>
+</div>
+
+<section class="contact-hero">
+  <div class="eyebrow">Get in Touch</div>
+  <h1>Let's talk <em>purity</em>,<br>partnerships, or both.</h1>
+  <p>Whether you're a household, a retailer, or exploring a distributorship — we're a message away.</p>
+</section>
+
+<section class="contact-wrap">
+  <!-- Info column -->
+  <div class="info-list">
+    <div class="info-card reveal">
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.32 1.78.6 2.63a2 2 0 01-.45 2.11L8.09 9.62a16 16 0 006.29 6.29l1.16-1.16a2 2 0 012.11-.45c.85.28 1.73.48 2.63.6A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+      <div>
+        <h4>Phone</h4>
+        <a href="tel:+919112304256">+91 91123 04256</a> / <a href="tel:+917219486603">+91 72194 86603</a>
+      </div>
+    </div>
+
+    <div class="info-card reveal">
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 5H3v14h18V5z" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+      <div>
+        <h4>Email</h4>
+        <a href="mailto:ilalkarwaterbottleservice@gmail.com">ilalkarwaterbottleservice@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="info-card reveal">
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.32A8 8 0 004.7 16.6L4 20l3.5-.9a8 8 0 0010.1-12.78z" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+      <div>
+        <h4>WhatsApp</h4>
+        <a href="https://wa.me/+919112304256" target="_blank" rel="noopener">Chat with us</a>
+      </div>
+    </div>
+
+    <div class="info-card reveal">
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-7.4 8-13a8 8 0 10-16 0c0 5.6 8 13 8 13z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.6" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+      <div>
+        <h4>Address</h4>
+        <p>Kamal Chowk Nagpur,<br>Maharashtra 440017</p>
+      </div>
+    </div>
+
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.0965864329005!2d79.09877012526053!3d21.16893103051573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0d62d3abc85%3A0x3d63ea874457679e!2sKamal%20Chowk%2C%20Nagpur%2C%20Maharashtra%20440017!5e1!3m2!1sen!2sin!4v1782036299316!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <!-- Form column -->
+  <div class="contact-form-card reveal">
+    <h3>Send us a message</h3>
+    <p>Distributor inquiry, bulk order, or just a question about our water — fill this in and we'll get back within 24 hours.</p>
+
+    <form id="contact-form">
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="+91" required>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="you@email.com" required>
+      </div>
+      <div class="field">
+        <label>I'm interested in</label>
+        <select name="interest" required>
+          <option value="" disabled selected>Select one</option>
+          <option>General Inquiry</option>
+          <option>Distributorship</option>
+          <option>Bulk / Retail Order</option>
+          <option>Partnership</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label>Message</label>
+        <textarea name="message" placeholder="Tell us a bit about what you need..." required></textarea>
+      </div>
+      <button type="submit" class="btn">Send Message</button>
+      <p id="form-status" style="grid-column:1/-1; font-size:13px; opacity:.7; margin-top:-6px;"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="wordmark" style="color:var(--light);">CLEAR<span> FLOW</span></div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/__clearflow?igsh=d3o0MnM3eGFxOTFl" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/share/1CAj2UCEYk/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3a4 4 0 00-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 011-1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></a>
+      <a href="https://wa.me/+919112304256" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.32A8 8 0 004.7 16.6L4 20l3.5-.9a8 8 0 0010.1-12.78z" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      <a href="mailto:ilalkarwaterbottleservice@gmail.com" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 5H3v14h18V5z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <p style="max-width:260px;">Premium natural mineral water, crafted for purity, trust, and everyday excellence.</p>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Business</h4>
+      <a href="contact.html">Become a Distributor</a>
+      <a href="contact.html">Bulk Orders</a>
+    </div>
+    <div>
+      <h4>Get in Touch</h4>
+      <a href="tel:+919112304256">+91 91123 04256</a><br>
+      <a href="tel:+917219486603">+91 72194 86603</a><br>
+      <a href="mailto:ilalkarwaterbottleservice@gmail.com">ilalkarwaterbottleservice@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 CLEAR FLOW. All rights reserved.</span>
+    <span>Kamal Chowk Nagpur, Maharashtra 440017</span>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
